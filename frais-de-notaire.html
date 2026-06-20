@@ -1,7 +1,7 @@
 <!DOCTYPE html><html lang="fr"><head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Calcul frais de notaire 2026 — Ancien & neuf, par département (gratuit)</title>
-<meta name="description" content="Calculez vos frais de notaire 2026 : ancien ou neuf, selon votre département. Émoluments, droits de mutation (DMTO), débours détaillés. Gratuit et instantané.">
+<title>Calcul frais de notaire 2026 — Ancien, neuf, terrain, garage, viager</title>
+<meta name="description" content="Calculez vos frais de notaire 2026 : logement ancien, neuf, terrain constructible, garage ou viager, selon votre département. Gratuit et instantané.">
 <link rel="canonical" href="https://biloute26.github.io/immo/frais-de-notaire.html">
 <meta property="og:title" content="Calcul frais de notaire 2026"><meta property="og:description" content="Estimez vos frais de notaire dans l'ancien et le neuf, barème 2026.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,13 +27,20 @@
 </div>
 <div class="container">
 <div class="panel">
-<div class="field"><label>Type de bien</label>
-<div class="seg" id="segType">
-<button class="active" data-v="ancien" onclick="setType('ancien')">Ancien</button>
-<button data-v="neuf" onclick="setType('neuf')">Neuf / VEFA</button>
-</div><div class="hint">Le neuf bénéficie de droits de mutation très réduits (0,715 %).</div></div>
-<div class="field"><label for="prix">Prix du bien</label>
+<div class="field"><label for="typeSel">Type de bien</label>
+<div class="inp"><select id="typeSel" onchange="setType(this.value)">
+<option value="ancien">Logement ancien</option>
+<option value="neuf">Logement neuf / VEFA</option>
+<option value="terrain-particulier">Terrain (acheté à un particulier)</option>
+<option value="terrain-pro">Terrain (acheté à un professionnel, TVA)</option>
+<option value="garage">Garage / parking</option>
+<option value="viager">Viager occupé</option>
+</select></div><div class="hint" id="typeHint">Le neuf et certains terrains bénéficient de droits de mutation réduits.</div></div>
+<div class="field"><label for="prix" id="prixLabel">Prix du bien</label>
 <div class="inp"><input type="text" id="prix" inputmode="numeric" placeholder="250 000" oninput="calc()"><span class="unit">€</span></div></div>
+<div class="field" id="occField" style="display:none"><label for="occ">Valeur occupée (prix − droit d'usage)</label>
+<div class="inp"><input type="text" id="occ" inputmode="numeric" placeholder="150 000" oninput="calc()"><span class="unit">€</span></div>
+<div class="hint">En viager occupé, les frais se calculent sur la valeur occupée, plus basse que la valeur libre.</div></div>
 <div class="field" id="deptField"><label for="dept">Département</label>
 <div class="inp"><select id="dept" onchange="calc()"></select></div>
 <div class="hint">La plupart des départements appliquent le taux majoré 5 % depuis 2026.</div></div>
@@ -47,6 +54,13 @@
 <div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2586059139929294" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
 </div>
 <div class="container content">
+<h2>Cas particuliers</h2>
+<h3>Frais de notaire pour un terrain constructible</h3>
+<p>Le calcul dépend du vendeur. Entre particuliers, les droits de mutation classiques s'appliquent (environ 5,8 %). Si le terrain est vendu par un professionnel assujetti à la TVA (lotisseur, promoteur), les droits sont réduits à 0,715 % car la TVA est déjà comprise dans le prix. À cela s'ajoutent souvent des frais de bornage par géomètre.</p>
+<h3>Frais de notaire pour un garage ou un parking</h3>
+<p>Les mêmes droits de mutation que pour un logement ancien s'appliquent (~5,8 %), mais sur un prix généralement faible. Le dossier étant plus simple, les débours sont réduits. Sur un box à 25 000 €, comptez environ 3 000 € de frais.</p>
+<h3>Frais de notaire en viager occupé</h3>
+<p>Particularité importante : les frais ne se calculent pas sur la valeur libre du bien, mais sur la <strong>valeur occupée</strong> (prix de vente diminué du droit d'usage et d'habitation réservé au vendeur). Cette base plus basse réduit nettement les frais de notaire par rapport à une vente classique du même bien.</p>
 <h2>Comment sont calculés les frais de notaire ?</h2>
 <p>Les « frais de notaire » ne reviennent pas au notaire : ils regroupent quatre postes distincts. Dans l'ancien, ils représentent environ 7 à 8 % du prix ; dans le neuf, seulement 2 à 3 %. La différence vient presque entièrement des droits de mutation.</p>
 <h3>1. Les droits de mutation (DMTO)</h3>
@@ -82,23 +96,38 @@
 <script src="calc.js"></script>
 <script>
 let typeBien='ancien';
+const hints={
+'ancien':"Droits de mutation départementaux, environ 5,8 % du prix.",
+'neuf':"Le neuf bénéficie de droits réduits à 0,715 %.",
+'terrain-particulier':"Entre particuliers, droits de mutation classiques (~5,8 %).",
+'terrain-pro':"Vendu par un professionnel : droits réduits à 0,715 % (TVA incluse dans le prix).",
+'garage':"Mêmes droits que l'ancien, dossier plus simple.",
+'viager':"Frais calculés sur la valeur occupée, pas sur la valeur libre."
+};
 // remplir départements
 const noms={'75':'Paris','13':'Bouches-du-Rhône','69':'Rhône','33':'Gironde','31':'Haute-Garonne','06':'Alpes-Maritimes','44':'Loire-Atlantique','59':'Nord','67':'Bas-Rhin','34':'Hérault','35':'Ille-et-Vilaine','38':'Isère','83':'Var','92':'Hauts-de-Seine','77':'Seine-et-Marne','78':'Yvelines','91':'Essonne','93':'Seine-Saint-Denis','94':'Val-de-Marne','95':'Val-d\'Oise'};
 const sel=document.getElementById('dept');
 const allDepts=['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','2A','2B','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','971','972','973','974'];
 allDepts.forEach(d=>{const o=document.createElement('option');o.value=d;o.textContent=d+(noms[d]?' — '+noms[d]:'');if(d==='75')o.selected=true;sel.appendChild(o);});
-function setType(t){typeBien=t;document.querySelectorAll('#segType button').forEach(b=>b.classList.toggle('active',b.dataset.v===t));document.getElementById('deptField').style.display=t==='neuf'?'none':'block';calc();}
+function setType(t){typeBien=t;
+  document.getElementById('typeHint').textContent=hints[t]||'';
+  const dep=(t==='neuf'||t==='terrain-pro');
+  document.getElementById('deptField').style.display=dep?'none':'block';
+  document.getElementById('occField').style.display=(t==='viager')?'block':'none';
+  calc();}
 function calc(){
   const prix=parseNum(document.getElementById('prix').value);
   if(prix<1000){document.getElementById('result').style.display='none';return;}
   const dept=document.getElementById('dept').value;
-  const r=fraisNotaire(prix,typeBien,tauxDMTO(dept));
+  const opts={};
+  if(typeBien==='viager'){opts.valeurOccupee=parseNum(document.getElementById('occ').value)||prix;}
+  const r=fraisNotaireEtendu(prix,typeBien,tauxDMTO(dept),opts);
   document.getElementById('result').style.display='block';
   document.getElementById('rTotal').textContent=eur(r.total);
   document.getElementById('rPct').textContent='Soit '+r.pct.toFixed(2)+' % du prix · Budget total : '+eur(prix+r.total);
   document.getElementById('rBreak').innerHTML=
     brow('Émoluments du notaire (TTC)',r.emol)+
-    brow(typeBien==='neuf'?'Taxe de publicité foncière':'Droits de mutation (DMTO)',r.dmto)+
+    brow(r.labelDmto||'Droits de mutation',r.dmto)+
     brow('Débours (estimation)',r.debours)+
     brow('Contribution sécurité immobilière',r.csi)+
     '<div class="brow total"><span>Total frais de notaire</span><span class="v">'+eur(r.total)+'</span></div>';
