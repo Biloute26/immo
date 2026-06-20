@@ -113,3 +113,28 @@ function tauxDMTO(dept){
   // 5% départemental + 1.20% communal + frais assiette = ~5.8066% ; 4.5% => ~5.31%
   return DEPTS_5PCT.includes(dept)?5.8066:5.3066;
 }
+
+// Frais de notaire étendus : terrain, garage, viager
+function fraisNotaireEtendu(prix,type,tauxDept,opts){
+  opts=opts||{};
+  const emol=emoluments(prix);
+  let dmto, labelDmto='Droits de mutation (DMTO)';
+  if(type==='neuf'){dmto=prix*0.00715;labelDmto='Taxe de publicité foncière';}
+  else if(type==='terrain-pro'){dmto=prix*0.00715;labelDmto='Droits réduits (terrain vendu par pro, TVA)';}
+  else if(type==='terrain-particulier'){dmto=prix*(tauxDept/100);labelDmto='Droits de mutation (terrain entre particuliers)';}
+  else if(type==='viager'){
+    // valeur fiscale = valeur occupée (prix - DUH). opts.valeurOccupee fournie.
+    const base=opts.valeurOccupee||prix;
+    dmto=base*(tauxDept/100);labelDmto='Droits de mutation (sur valeur occupée)';
+    const emol2=emoluments(base);
+    const csi2=Math.max(base*0.001,15);
+    const deb2=prix<150000?1200:(prix<300000?1400:1600);
+    return {emol:emol2,dmto,csi:csi2,debours:deb2,total:emol2+dmto+csi2+deb2,prix,base,pct:(emol2+dmto+csi2+deb2)/prix*100,labelDmto};
+  }
+  else{dmto=prix*(tauxDept/100);}
+  const csi=Math.max(prix*0.001,15);
+  let debours=prix<150000?1200:(prix<300000?1400:1600);
+  if(type==='garage')debours=Math.min(debours,900); // dossier plus simple
+  const total=emol+dmto+csi+debours;
+  return {emol,dmto,csi,debours,total,prix,pct:total/prix*100,labelDmto};
+}
