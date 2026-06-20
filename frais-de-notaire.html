@@ -1,0 +1,110 @@
+<!DOCTYPE html><html lang="fr"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calcul frais de notaire 2026 — Ancien & neuf, par département (gratuit)</title>
+<meta name="description" content="Calculez vos frais de notaire 2026 : ancien ou neuf, selon votre département. Émoluments, droits de mutation (DMTO), débours détaillés. Gratuit et instantané.">
+<link rel="canonical" href="https://biloute26.github.io/immo/frais-de-notaire.html">
+<meta property="og:title" content="Calcul frais de notaire 2026"><meta property="og:description" content="Estimez vos frais de notaire dans l'ancien et le neuf, barème 2026.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2586059139929294" crossorigin="anonymous"></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Quel est le pourcentage des frais de notaire en 2026 ?","acceptedAnswer":{"@type":"Answer","text":"Environ 7 à 8 % du prix dans l'ancien et 2 à 3 % dans le neuf."}},{"@type":"Question","name":"Les frais de notaire ont-ils augmenté en 2026 ?","acceptedAnswer":{"@type":"Answer","text":"Oui, la majorité des départements ont relevé les droits de mutation de 4,5 % à 5 % au 1er janvier 2026."}}]}</script>
+</head><body>
+<header class="site"><div class="wrap">
+<a href="index.html" class="logo"><span class="mark">N</span> Calculateurs Immobiliers</a>
+<button class="burger" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+<nav class="main" id="nav">
+<a href="frais-de-notaire.html">Frais de notaire</a>
+<a href="capacite-emprunt.html">Capacité d'emprunt</a>
+<a href="mensualites-pret.html">Mensualités</a>
+<a href="plus-value.html">Plus-value</a>
+<a href="rendement-locatif.html">Rendement locatif</a>
+</nav></div></header>
+<div class="container calc-head">
+<div class="crumb"><a href="index.html">Accueil</a> › Frais de notaire</div>
+<h1>Calcul des frais de notaire 2026</h1>
+<p class="lead">Estimez les frais d'acquisition pour un achat dans l'ancien ou le neuf, selon votre département. Barème officiel 2026.</p>
+</div>
+<div class="container">
+<div class="panel">
+<div class="field"><label>Type de bien</label>
+<div class="seg" id="segType">
+<button class="active" data-v="ancien" onclick="setType('ancien')">Ancien</button>
+<button data-v="neuf" onclick="setType('neuf')">Neuf / VEFA</button>
+</div><div class="hint">Le neuf bénéficie de droits de mutation très réduits (0,715 %).</div></div>
+<div class="field"><label for="prix">Prix du bien</label>
+<div class="inp"><input type="text" id="prix" inputmode="numeric" placeholder="250 000" oninput="calc()"><span class="unit">€</span></div></div>
+<div class="field" id="deptField"><label for="dept">Département</label>
+<div class="inp"><select id="dept" onchange="calc()"></select></div>
+<div class="hint">La plupart des départements appliquent le taux majoré 5 % depuis 2026.</div></div>
+</div>
+<div class="result" id="result" style="display:none">
+<div class="big-label">Frais de notaire estimés</div>
+<div class="big" id="rTotal">—</div>
+<div class="sub" id="rPct"></div>
+<div class="breakdown" id="rBreak"></div>
+</div>
+<div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2586059139929294" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+</div>
+<div class="container content">
+<h2>Comment sont calculés les frais de notaire ?</h2>
+<p>Les « frais de notaire » ne reviennent pas au notaire : ils regroupent quatre postes distincts. Dans l'ancien, ils représentent environ 7 à 8 % du prix ; dans le neuf, seulement 2 à 3 %. La différence vient presque entièrement des droits de mutation.</p>
+<h3>1. Les droits de mutation (DMTO)</h3>
+<p>C'est la part la plus lourde dans l'ancien : une taxe versée à l'État et aux collectivités. Depuis le 1er janvier 2026, la plupart des départements ont relevé leur taux de 4,5 % à 5 %, portant le taux global à environ 5,81 %. Dans le neuf, ces droits sont remplacés par une taxe de publicité foncière réduite à 0,715 %.</p>
+<h3>2. Les émoluments du notaire</h3>
+<p>C'est la rémunération réglementée du notaire, identique partout en France. Elle suit un barème dégressif par tranches : 3,945 % jusqu'à 6 500 €, 1,627 % de 6 500 à 17 000 €, 1,085 % de 17 000 à 60 000 €, puis 0,814 % au-delà (TVA 20 % en sus). Une remise jusqu'à 20 % est possible sur la tranche au-dessus de 100 000 €.</p>
+<h3>3. Les débours</h3>
+<p>Ce sont les sommes avancées par le notaire pour le compte de l'acheteur : documents d'urbanisme, géomètre, cadastre, publication. Comptez quelques centaines à un peu plus de mille euros.</p>
+<h3>4. La contribution de sécurité immobilière</h3>
+<p>Un prélèvement de 0,10 % du prix (minimum 15 €) lié à la publicité foncière.</p>
+<h2>Questions fréquentes</h2>
+<div class="faq">
+<details><summary>Peut-on réduire les frais de notaire ?</summary><p>Oui : en déduisant la valeur du mobilier (cuisine équipée, meubles) du prix, et en négociant une remise sur les émoluments pour la tranche supérieure à 100 000 €. Acheter dans le neuf réduit aussi fortement la facture.</p></details>
+<details><summary>Quand paie-t-on les frais de notaire ?</summary><p>Le jour de la signature de l'acte authentique de vente, chez le notaire. Ils ne sont pas finançables par le prêt immobilier classique : il faut un apport.</p></details>
+<details><summary>La hausse 2026 concerne-t-elle mon département ?</summary><p>La majorité des départements ont voté le taux à 5 %. Certains ont prévu une dérogation pour les primo-accédants. Le neuf n'est pas concerné.</p></details>
+</div>
+</div>
+<footer class="site"><div class="wrap">
+<div class="cols">
+<div><h4>Calculateurs Immobiliers</h4><p style="font-size:14px;color:#B8C5BD;max-width:340px">Outils de calcul gratuits pour votre projet immobilier en France. Barèmes officiels 2026, sans inscription.</p></div>
+<div><h4>Calculateurs</h4>
+<a href="frais-de-notaire.html">Frais de notaire</a>
+<a href="capacite-emprunt.html">Capacité d'emprunt</a>
+<a href="mensualites-pret.html">Mensualités de prêt</a>
+<a href="plus-value.html">Plus-value immobilière</a>
+<a href="rendement-locatif.html">Rendement locatif</a></div>
+<div><h4>À propos</h4>
+<a href="index.html">Accueil</a>
+<a href="mentions-legales.html">Mentions légales</a></div>
+</div>
+<div class="disc">Les résultats fournis par ces calculateurs sont des estimations à titre indicatif, basées sur les barèmes en vigueur en 2026. Ils ne constituent pas un conseil juridique, fiscal ou financier et ne sauraient engager notre responsabilité. Pour toute décision, consultez un notaire, un courtier ou un conseiller. © 2026 Calculateurs Immobiliers.</div>
+</div></footer>
+<script src="calc.js"></script>
+<script>
+let typeBien='ancien';
+// remplir départements
+const noms={'75':'Paris','13':'Bouches-du-Rhône','69':'Rhône','33':'Gironde','31':'Haute-Garonne','06':'Alpes-Maritimes','44':'Loire-Atlantique','59':'Nord','67':'Bas-Rhin','34':'Hérault','35':'Ille-et-Vilaine','38':'Isère','83':'Var','92':'Hauts-de-Seine','77':'Seine-et-Marne','78':'Yvelines','91':'Essonne','93':'Seine-Saint-Denis','94':'Val-de-Marne','95':'Val-d\'Oise'};
+const sel=document.getElementById('dept');
+const allDepts=['01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','2A','2B','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','971','972','973','974'];
+allDepts.forEach(d=>{const o=document.createElement('option');o.value=d;o.textContent=d+(noms[d]?' — '+noms[d]:'');if(d==='75')o.selected=true;sel.appendChild(o);});
+function setType(t){typeBien=t;document.querySelectorAll('#segType button').forEach(b=>b.classList.toggle('active',b.dataset.v===t));document.getElementById('deptField').style.display=t==='neuf'?'none':'block';calc();}
+function calc(){
+  const prix=parseNum(document.getElementById('prix').value);
+  if(prix<1000){document.getElementById('result').style.display='none';return;}
+  const dept=document.getElementById('dept').value;
+  const r=fraisNotaire(prix,typeBien,tauxDMTO(dept));
+  document.getElementById('result').style.display='block';
+  document.getElementById('rTotal').textContent=eur(r.total);
+  document.getElementById('rPct').textContent='Soit '+r.pct.toFixed(2)+' % du prix · Budget total : '+eur(prix+r.total);
+  document.getElementById('rBreak').innerHTML=
+    brow('Émoluments du notaire (TTC)',r.emol)+
+    brow(typeBien==='neuf'?'Taxe de publicité foncière':'Droits de mutation (DMTO)',r.dmto)+
+    brow('Débours (estimation)',r.debours)+
+    brow('Contribution sécurité immobilière',r.csi)+
+    '<div class="brow total"><span>Total frais de notaire</span><span class="v">'+eur(r.total)+'</span></div>';
+}
+function brow(l,v){return '<div class="brow"><span>'+l+'</span><span class="v">'+eur(v)+'</span></div>';}
+setType('ancien');
+</script>
+<script>document.addEventListener('click',e=>{if(!e.target.closest('nav')&&!e.target.closest('.burger')){const n=document.getElementById('nav');if(n)n.classList.remove('open')}})</script>
+</body></html>
