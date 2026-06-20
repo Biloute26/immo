@@ -1,0 +1,102 @@
+<!DOCTYPE html><html lang="fr"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Calcul plus-value immobilière 2026 — Impôt à la revente (simulateur)</title>
+<meta name="description" content="Calculez l'impôt sur votre plus-value immobilière 2026 : abattements selon la durée de détention, IR 19 %, prélèvements sociaux 17,2 % et surtaxe. Gratuit.">
+<link rel="canonical" href="https://biloute26.github.io/immo/plus-value.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2586059139929294" crossorigin="anonymous"></script>
+</head><body>
+<header class="site"><div class="wrap">
+<a href="index.html" class="logo"><span class="mark">N</span> Calculateurs Immobiliers</a>
+<button class="burger" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
+<nav class="main" id="nav">
+<a href="frais-de-notaire.html">Frais de notaire</a>
+<a href="capacite-emprunt.html">Capacité d'emprunt</a>
+<a href="mensualites-pret.html">Mensualités</a>
+<a href="plus-value.html">Plus-value</a>
+<a href="rendement-locatif.html">Rendement locatif</a>
+</nav></div></header>
+<div class="container calc-head">
+<div class="crumb"><a href="index.html">Accueil</a> › Plus-value immobilière</div>
+<h1>Calcul de la plus-value immobilière</h1>
+<p class="lead">Estimez l'impôt dû lors de la revente d'un bien (hors résidence principale, exonérée), selon la durée de détention.</p>
+</div>
+<div class="container"><div class="panel">
+<div class="row2">
+<div class="field"><label for="pv">Prix de vente</label><div class="inp"><input type="text" id="pv" inputmode="numeric" placeholder="300 000" oninput="calc()"><span class="unit">€</span></div></div>
+<div class="field"><label for="pa">Prix d'achat initial</label><div class="inp"><input type="text" id="pa" inputmode="numeric" placeholder="200 000" oninput="calc()"><span class="unit">€</span></div></div>
+</div>
+<div class="field"><label for="duree">Durée de détention</label><div class="inp"><input type="text" id="duree" inputmode="numeric" placeholder="10" oninput="calc()"><span class="unit">ans</span></div></div>
+<div class="field"><label>Frais et travaux</label>
+<div class="seg" id="segF"><button class="active" data-v="forfait" onclick="setF('forfait')">Forfaits (7,5 % + 15 %)</button><button data-v="reel" onclick="setF('reel')">Montants réels</button></div>
+<div class="hint">Au-delà de 5 ans, les forfaits sont souvent plus avantageux.</div></div>
+<div id="reelFields" style="display:none">
+<div class="row2">
+<div class="field"><label for="fa">Frais d'acquisition</label><div class="inp"><input type="text" id="fa" inputmode="numeric" placeholder="15 000" oninput="calc()"><span class="unit">€</span></div></div>
+<div class="field"><label for="tr">Travaux justifiés</label><div class="inp"><input type="text" id="tr" inputmode="numeric" placeholder="0" oninput="calc()"><span class="unit">€</span></div></div>
+</div></div>
+</div>
+<div class="result" id="result" style="display:none">
+<div class="big-label">Impôt total sur la plus-value</div>
+<div class="big" id="rImpot">—</div>
+<div class="sub" id="rSub"></div>
+<div class="breakdown" id="rBreak"></div>
+</div>
+<div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2586059139929294" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+</div>
+<div class="container content">
+<h2>Comment est imposée la plus-value ?</h2>
+<p>La plus-value brute est la différence entre le prix de vente et le prix d'achat majoré des frais et travaux. Elle est imposée à 19 % au titre de l'impôt sur le revenu et 17,2 % de prélèvements sociaux, après abattements pour durée de détention.</p>
+<p>L'exonération est totale au bout de 22 ans pour l'impôt sur le revenu et 30 ans pour les prélèvements sociaux. Une surtaxe de 2 à 6 % s'applique au-delà de 50 000 € de plus-value imposable.</p>
+<p><strong>La résidence principale est totalement exonérée</strong> : ce calculateur concerne les résidences secondaires et investissements locatifs.</p>
+<div class="faq">
+<details><summary>Comment fonctionnent les abattements ?</summary><p>Pour l'IR : 6 %/an de la 6e à la 21e année, 4 % la 22e. Pour les prélèvements sociaux : 1,65 %/an de la 6e à la 21e, 1,60 % la 22e, puis 9 %/an jusqu'à 30 ans.</p></details>
+<details><summary>Qui paie l'impôt ?</summary><p>Le notaire le calcule et le prélève directement sur le prix de vente lors de la signature.</p></details>
+</div>
+</div>
+<footer class="site"><div class="wrap">
+<div class="cols">
+<div><h4>Calculateurs Immobiliers</h4><p style="font-size:14px;color:#B8C5BD;max-width:340px">Outils de calcul gratuits pour votre projet immobilier en France. Barèmes officiels 2026, sans inscription.</p></div>
+<div><h4>Calculateurs</h4>
+<a href="frais-de-notaire.html">Frais de notaire</a>
+<a href="capacite-emprunt.html">Capacité d'emprunt</a>
+<a href="mensualites-pret.html">Mensualités de prêt</a>
+<a href="plus-value.html">Plus-value immobilière</a>
+<a href="rendement-locatif.html">Rendement locatif</a></div>
+<div><h4>À propos</h4>
+<a href="index.html">Accueil</a>
+<a href="mentions-legales.html">Mentions légales</a></div>
+</div>
+<div class="disc">Les résultats fournis par ces calculateurs sont des estimations à titre indicatif, basées sur les barèmes en vigueur en 2026. Ils ne constituent pas un conseil juridique, fiscal ou financier et ne sauraient engager notre responsabilité. Pour toute décision, consultez un notaire, un courtier ou un conseiller. © 2026 Calculateurs Immobiliers.</div>
+</div></footer>
+<script src="calc.js"></script>
+<script>
+let modeF='forfait';
+function setF(m){modeF=m;document.querySelectorAll('#segF button').forEach(b=>b.classList.toggle('active',b.dataset.v===m));document.getElementById('reelFields').style.display=m==='reel'?'block':'none';calc();}
+function calc(){
+  const pv=parseNum(document.getElementById('pv').value);
+  const pa=parseNum(document.getElementById('pa').value);
+  const duree=parseNum(document.getElementById('duree').value);
+  const fa=parseNum(document.getElementById('fa').value);
+  const tr=parseNum(document.getElementById('tr').value);
+  if(pv<1000||pa<1000){document.getElementById('result').style.display='none';return;}
+  const r=plusValue(pv,pa,fa,tr,duree,modeF==='forfait');
+  document.getElementById('result').style.display='block';
+  if(r.pvBrute<=0){document.getElementById('rImpot').textContent='0 €';document.getElementById('rSub').textContent='Aucune plus-value imposable (pas de gain).';document.getElementById('rBreak').innerHTML='';return;}
+  document.getElementById('rImpot').textContent=eur(r.totalImpot);
+  document.getElementById('rSub').textContent='Plus-value nette après impôt : '+eur(r.net);
+  document.getElementById('rBreak').innerHTML=
+    brow('Plus-value brute',r.pvBrute)+
+    brow('Abattement IR appliqué',(r.abIR*100).toFixed(0)+' %')+
+    brow('Impôt sur le revenu (19 %)',r.ir)+
+    brow('Prélèvements sociaux (17,2 %)',r.ps)+
+    (r.surtaxe>0?brow('Surtaxe',r.surtaxe):'')+
+    '<div class="brow total"><span>Impôt total</span><span class="v">'+eur(r.totalImpot)+'</span></div>';
+}
+function brow(l,v){const val=(typeof v==='number')?eur(v):v;return '<div class="brow"><span>'+l+'</span><span class="v">'+val+'</span></div>';}
+setF('forfait');
+</script>
+<script>document.addEventListener('click',e=>{if(!e.target.closest('nav')&&!e.target.closest('.burger')){const n=document.getElementById('nav');if(n)n.classList.remove('open')}})</script>
+</body></html>
