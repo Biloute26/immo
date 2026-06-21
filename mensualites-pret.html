@@ -32,6 +32,7 @@
 </div>
 <div class="field"><label for="assur">Assurance emprunteur (mensuelle, optionnel)</label><div class="inp"><input type="text" id="assur" inputmode="numeric" placeholder="30" oninput="calc()"><span class="unit">€/mois</span></div></div>
 </div>
+<div class="usure" id="usureBox" style="display:none"></div>
 <div class="result" id="result" style="display:none">
 <div class="big-label">Mensualité (assurance comprise)</div>
 <div class="big" id="rMens">—</div>
@@ -93,6 +94,7 @@ function calc(){
 }
 function brow(l,v){return '<div class="brow"><span>'+l+'</span><span class="v">'+eur(v)+'</span></div>';}
 calc();
+afficherTauxUsure('usureBox');
 </script>
 <script>document.addEventListener('click',e=>{if(!e.target.closest('nav')&&!e.target.closest('.burger')){const n=document.getElementById('nav');if(n)n.classList.remove('open')}})</script>
 </body></html>
