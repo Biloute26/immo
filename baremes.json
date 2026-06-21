@@ -1,0 +1,55 @@
+{
+  "_meta": {
+    "derniere_maj": "2026-06-21",
+    "prochaine_verification": "2027-01-01",
+    "source": "Service-Public.fr, BOFiP, arrêté du 26 février 2016 (émoluments), CGI, Banque de France (taux d'usure)",
+    "description": "Barèmes officiels des calculateurs immobiliers. Émoluments et fiscalité : à vérifier au 1er janvier. Taux d'usure : à mettre à jour chaque trimestre (1er janv, avril, juillet, octobre)."
+  },
+  "emoluments_notaire": {
+    "tva": 0.20,
+    "tranches": [
+      {"plafond": 6500, "taux": 0.03945},
+      {"plafond": 17000, "taux": 0.01627},
+      {"plafond": 60000, "taux": 0.01085},
+      {"plafond": null, "taux": 0.00814}
+    ],
+    "remise_possible_au_dela": 100000,
+    "remise_max": 0.20
+  },
+  "droits_mutation": {
+    "neuf_taux": 0.00715,
+    "ancien_taux_standard": 0.053066,
+    "ancien_taux_majore_2026": 0.058066,
+    "csi_taux": 0.001,
+    "csi_minimum": 15
+  },
+  "plus_value": {
+    "taux_ir": 0.19,
+    "taux_prelevements_sociaux": 0.172,
+    "forfait_frais_acquisition": 0.075,
+    "forfait_travaux": 0.15,
+    "duree_min_forfait": 5,
+    "surtaxe_seuil": 50000
+  },
+  "credit": {
+    "_source": "Banque de France - taux d'usure 2e trimestre 2026",
+    "_periode_validite": "2026-04-01 au 2026-06-30",
+    "_prochaine_maj": "2026-07-01",
+    "_note": "Taux d'usure = TAEG maximum légal qu'une banque peut pratiquer (frais et assurance compris).",
+    "taux_usure": {
+      "moins_10_ans": 0.0400,
+      "10_a_20_ans": 0.0448,
+      "20_ans_et_plus": 0.0519,
+      "taux_variable": 0.0500,
+      "pret_relais": 0.0620
+    },
+    "taux_marche_indicatifs": {
+      "_maj": "2026-04",
+      "_note": "Taux moyens nominaux observés sur le marché (hors assurance). Indicatifs.",
+      "15_ans": 0.0320,
+      "20_ans": 0.0335,
+      "25_ans": 0.0345
+    },
+    "taux_endettement_max": 0.35
+  }
+}
