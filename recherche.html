@@ -1,0 +1,121 @@
+<!DOCTYPE html><html lang="fr"><head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Recherche — Calculateurs immobiliers, frais de notaire par ville et département</title>
+<meta name="description" content="Trouvez instantanément le bon calculateur immobilier selon votre ville ou département, et accédez à l'annuaire officiel des notaires de France.">
+<link rel="canonical" href="https://biloute26.github.io/immo/recherche.html">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="shared.css">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2586059139929294" crossorigin="anonymous"></script>
+<style>
+.searchbox{position:relative;margin:6px 0 8px}
+.searchbox input{width:100%;padding:17px 18px 17px 50px;font-size:17px;border:1.5px solid var(--line);border-radius:12px;font-family:inherit;background:var(--white)}
+.searchbox input:focus{outline:none;border-color:var(--ink2);box-shadow:0 0 0 3px rgba(46,81,65,.1)}
+.searchbox .si{position:absolute;left:18px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--muted)}
+.results{margin-top:8px}
+.rcard{display:flex;align-items:center;gap:14px;background:var(--white);border:1px solid var(--line);border-radius:12px;padding:15px 18px;margin-bottom:10px;transition:.15s;cursor:pointer}
+.rcard:hover{transform:translateX(3px);box-shadow:var(--shadow);text-decoration:none}
+.rcard .ri{width:40px;height:40px;border-radius:9px;background:var(--paper2);display:grid;place-items:center;font-size:19px;flex-shrink:0}
+.rcard h3{font-size:16px;color:var(--ink);margin:0 0 2px}
+.rcard p{font-size:13.5px;color:var(--muted);margin:0}
+.rcard .arr{margin-left:auto;color:var(--brass);font-size:18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0}
+.chip{padding:8px 14px;background:var(--white);border:1.5px solid var(--line);border-radius:20px;font-size:13.5px;color:var(--ink2);cursor:pointer;transition:.15s}
+.chip:hover,.chip.on{background:var(--ink2);color:var(--white);border-color:var(--ink2)}
+.section-t{font-family:'Fraunces',serif;font-size:15px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin:24px 0 10px}
+.notaire-box{background:linear-gradient(165deg,var(--ink),var(--ink2));color:#fff;border-radius:14px;padding:22px;margin-top:10px}
+.notaire-box h3{font-family:'Fraunces',serif;color:#fff;font-size:19px;margin-bottom:6px}
+.notaire-box p{color:#CBD6CF;font-size:14px;margin-bottom:14px}
+.notaire-box .nrow{display:flex;gap:10px;flex-wrap:wrap}
+.notaire-box select{flex:1;min-width:180px;padding:12px;border-radius:9px;border:none;font-family:inherit;font-size:15px}
+.notaire-box a.btn{background:var(--brass2);color:var(--ink);font-weight:700;padding:12px 20px;border-radius:9px;font-size:15px;border:none;cursor:pointer;display:inline-block}
+.notaire-box a.btn:hover{text-decoration:none;opacity:.92}
+.nores{text-align:center;color:var(--muted);padding:24px;font-size:15px}
+</style>
+</head><body>
+<!--HEADER-->
+<div class="container calc-head">
+<div class="crumb"><a href="index.html">Accueil</a> › Recherche</div>
+<h1>Recherche</h1>
+<p class="lead">Tapez ce que vous cherchez — un calcul, une ville, un département — et accédez directement au bon outil. Trouvez aussi un notaire près de chez vous.</p>
+</div>
+<div class="container">
+<div class="searchbox"><span class="si">⌕</span><input type="text" id="q" placeholder="Ex : frais de notaire Lyon, plus-value, emprunt 200000…" autocomplete="off" oninput="run()"></div>
+<div class="chips" id="chips">
+<span class="chip" onclick="quick('frais de notaire')">📜 Frais de notaire</span>
+<span class="chip" onclick="quick('emprunt')">🔑 Capacité d'emprunt</span>
+<span class="chip" onclick="quick('mensualité')">📊 Mensualités</span>
+<span class="chip" onclick="quick('plus-value')">📈 Plus-value</span>
+<span class="chip" onclick="quick('rendement locatif')">🏠 Rendement</span>
+</div>
+<div class="results" id="results"></div>
+<div id="deptResult"></div>
+<div class="section-t">Trouver un notaire</div>
+<div class="notaire-box">
+<h3>Annuaire officiel des notaires</h3>
+<p>Sélectionnez votre département pour consulter la liste officielle des études notariales sur notaires.fr.</p>
+<div class="nrow">
+<select id="deptNot"></select>
+<a class="btn" id="notLink" href="https://www.notaires.fr/fr/directory" target="_blank" rel="noopener">Voir les notaires →</a>
+</div>
+</div>
+<div class="ad-slot"><ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2586059139929294" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins><script>(adsbygoogle=window.adsbygoogle||[]).push({});</script></div>
+</div>
+<div class="container content">
+<h2>Comment fonctionne la recherche ?</h2>
+<p>Saisissez un mot-clé (type de calcul, ville ou département) : le moteur vous oriente instantanément vers le calculateur adapté, avec votre département pré-rempli quand c'est possible. Pour les frais de notaire, indiquer une ville ou un numéro de département applique automatiquement le bon taux de droits de mutation 2026.</p>
+<p>L'annuaire des notaires renvoie vers le service officiel notaires.fr, seule source à jour et fiable des études notariales de France.</p>
+</div>
+<!--FOOTER-->
+<script src="calc.js"></script>
+<script src="search-data.js"></script>
+<script>
+const RES=document.getElementById('results');
+const tools=[
+{k:['frais','notaire','acquisition','achat','droits','mutation','dmto','terrain','garage','viager'],t:'Frais de notaire',d:'Ancien, neuf, terrain, garage, viager — par département',ic:'📜',u:'frais-de-notaire.html'},
+{k:['emprunt','capacité','emprunter','budget','revenus','endettement','combien'],t:'Capacité d\'emprunt',d:'Quel montant emprunter selon vos revenus',ic:'🔑',u:'capacite-emprunt.html'},
+{k:['mensualité','mensualites','prêt','pret','crédit','credit','amortissement','taux','remboursement'],t:'Mensualités de prêt',d:'Mensualité, coût total et amortissement',ic:'📊',u:'mensualites-pret.html'},
+{k:['plus-value','plus value','plusvalue','revente','impôt','impot','vendre','abattement'],t:'Plus-value immobilière',d:'Impôt à la revente selon la durée de détention',ic:'📈',u:'plus-value.html'},
+{k:['rendement','locatif','rentabilité','rentabilite','investissement','loyer','location'],t:'Rendement locatif',d:'Rentabilité brute et nette d\'un investissement',ic:'🏠',u:'rendement-locatif.html'}
+];
+function norm(s){return (s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');}
+function quick(s){document.getElementById('q').value=s;run();}
+function run(){
+  const raw=document.getElementById('q').value.trim();
+  const q=norm(raw);
+  document.getElementById('deptResult').innerHTML='';
+  if(!q){RES.innerHTML='';showAllTools();return;}
+  // détecter ville ou département
+  let dept=null,villeName=null;
+  const numMatch=raw.match(/\b(\d{2,3})\b/);
+  if(numMatch && DEPT_NAMES[numMatch[1]]){dept=numMatch[1];villeName=DEPT_NAMES[dept];}
+  if(!dept){for(const [code,info] of Object.entries(VILLES)){if(q.includes(norm(code))){dept=info.dept;villeName=info.nom;break;}}}
+  if(!dept){for(const [code,nom] of Object.entries(DEPT_NAMES)){if(q.includes(norm(nom))&&norm(nom).length>3){dept=code;villeName=nom;break;}}}
+  // détecter montant
+  const montant=(raw.replace(/\s/g,'').match(/(\d{4,})/)||[])[1];
+  // scorer les outils
+  let scored=tools.map(t=>{let s=0;t.k.forEach(kw=>{if(q.includes(norm(kw)))s+=kw.length;});return {t,s};}).filter(x=>x.s>0).sort((a,b)=>b.s-a.s);
+  if(scored.length===0)scored=tools.map(t=>({t,s:0}));
+  let html='';
+  scored.forEach(({t})=>{
+    let url=t.u;let extra='';
+    if(dept&&t.u==='frais-de-notaire.html'){url+='?dept='+dept;extra=' · '+villeName+' ('+dept+')';}
+    if(montant&&(t.u==='mensualites-pret.html'||t.u==='capacite-emprunt.html'||t.u.includes('frais'))){url+=(url.includes('?')?'&':'?')+'montant='+montant;extra+=' · '+Number(montant).toLocaleString('fr-FR')+' €';}
+    html+='<a class="rcard" href="'+url+'"><div class="ri">'+t.ic+'</div><div><h3>'+t.t+'</h3><p>'+t.d+extra+'</p></div><div class="arr">→</div></a>';
+  });
+  RES.innerHTML=html||'<div class="nores">Aucun calculateur trouvé. Essayez « frais de notaire », « emprunt » ou « plus-value ».</div>';
+  // si dept détecté, pré-sélectionner dans l'annuaire notaire
+  if(dept){const sel=document.getElementById('deptNot');sel.value=dept;updateNot();
+    document.getElementById('deptResult').innerHTML='<div class="section-t">Notaires à '+villeName+'</div>';}
+}
+function showAllTools(){let html='';tools.forEach(t=>{html+='<a class="rcard" href="'+t.u+'"><div class="ri">'+t.ic+'</div><div><h3>'+t.t+'</h3><p>'+t.d+'</p></div><div class="arr">→</div></a>';});RES.innerHTML=html;}
+// annuaire notaires
+const selN=document.getElementById('deptNot');
+Object.entries(DEPT_NAMES).forEach(([c,n])=>{const o=document.createElement('option');o.value=c;o.textContent=c+' — '+n;if(c==='75')o.selected=true;selN.appendChild(o);});
+function updateNot(){const c=selN.value;const n=DEPT_NAMES[c];
+  document.getElementById('notLink').href='https://www.notaires.fr/fr/directory/notaries?recherche='+encodeURIComponent(n);}
+selN.addEventListener('change',updateNot);updateNot();
+showAllTools();
+</script>
+<script>document.addEventListener('click',e=>{if(!e.target.closest('nav')&&!e.target.closest('.burger')){const n=document.getElementById('nav');if(n)n.classList.remove('open')}})</script>
+</body></html>
