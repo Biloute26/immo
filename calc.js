@@ -1,4 +1,11 @@
 // ===== Calculateurs immobiliers 2026 - moteur de calcul =====
+// Barèmes chargés depuis baremes.json (mis à jour sans toucher au code).
+let BAREMES=null;
+async function chargerBaremes(){
+  if(BAREMES)return BAREMES;
+  try{const r=await fetch('baremes.json',{cache:'no-store'});BAREMES=await r.json();}catch(e){BAREMES=null;}
+  return BAREMES;
+}
 const fmt=(n)=>new Intl.NumberFormat('fr-FR',{maximumFractionDigits:0}).format(Math.round(n));
 const fmt2=(n)=>new Intl.NumberFormat('fr-FR',{minimumFractionDigits:2,maximumFractionDigits:2}).format(n);
 const eur=(n)=>fmt(n)+' €';
@@ -137,4 +144,27 @@ function fraisNotaireEtendu(prix,type,tauxDept,opts){
   if(type==='garage')debours=Math.min(debours,900); // dossier plus simple
   const total=emol+dmto+csi+debours;
   return {emol,dmto,csi,debours,total,prix,pct:total/prix*100,labelDmto};
+}
+
+// Affiche un bandeau taux d'usure + taux marché (lit baremes.json)
+async function afficherTauxUsure(elId){
+  const el=document.getElementById(elId);if(!el)return;
+  const b=await chargerBaremes();if(!b||!b.credit){el.style.display='none';return;}
+  const u=b.credit.taux_usure, m=b.credit.taux_marche_indicatifs;
+  const pct=(x)=>(x*100).toFixed(2).replace('.',',')+' %';
+  const periode=b.credit._periode_validite||'';
+  el.innerHTML=
+    '<div class="usure-head"><strong>Taux en vigueur</strong><span class="usure-date">Période '+periode+'</span></div>'+
+    '<div class="usure-grid">'+
+      '<div class="usure-cell"><span class="ul">Taux d\'usure (max légal)</span>'+
+        '<span class="uv">'+pct(u['moins_10_ans'])+' <small>&lt;10 ans</small></span>'+
+        '<span class="uv">'+pct(u['10_a_20_ans'])+' <small>10–20 ans</small></span>'+
+        '<span class="uv">'+pct(u['20_ans_et_plus'])+' <small>20 ans +</small></span></div>'+
+      (m?'<div class="usure-cell"><span class="ul">Taux moyen marché (indicatif)</span>'+
+        '<span class="uv">'+pct(m['15_ans'])+' <small>15 ans</small></span>'+
+        '<span class="uv">'+pct(m['20_ans'])+' <small>20 ans</small></span>'+
+        '<span class="uv">'+pct(m['25_ans'])+' <small>25 ans</small></span></div>':'')+
+    '</div>'+
+    '<div class="usure-foot">Source : Banque de France. Le taux d\'usure est le TAEG maximum qu\'une banque peut pratiquer (assurance et frais compris).</div>';
+  el.style.display='block';
 }
