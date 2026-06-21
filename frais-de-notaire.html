@@ -14,6 +14,7 @@
 <a href="index.html" class="logo"><span class="mark">N</span> Calculateurs Immobiliers</a>
 <button class="burger" onclick="document.getElementById('nav').classList.toggle('open')">☰</button>
 <nav class="main" id="nav">
+<a href="recherche.html">Recherche</a>
 <a href="frais-de-notaire.html">Frais de notaire</a>
 <a href="capacite-emprunt.html">Capacité d'emprunt</a>
 <a href="mensualites-pret.html">Mensualités</a>
@@ -82,6 +83,7 @@
 <div class="cols">
 <div><h4>Calculateurs Immobiliers</h4><p style="font-size:14px;color:#B8C5BD;max-width:340px">Outils de calcul gratuits pour votre projet immobilier en France. Barèmes officiels 2026, sans inscription.</p></div>
 <div><h4>Calculateurs</h4>
+<a href="recherche.html">Recherche</a>
 <a href="frais-de-notaire.html">Frais de notaire</a>
 <a href="capacite-emprunt.html">Capacité d'emprunt</a>
 <a href="mensualites-pret.html">Mensualités de prêt</a>
@@ -134,6 +136,11 @@ function calc(){
 }
 function brow(l,v){return '<div class="brow"><span>'+l+'</span><span class="v">'+eur(v)+'</span></div>';}
 setType('ancien');
+// Pré-remplissage depuis l'URL (?dept= &montant=)
+(function(){const p=new URLSearchParams(location.search);
+const d=p.get('dept');if(d&&document.querySelector('#dept option[value="'+d+'"]'))document.getElementById('dept').value=d;
+const m=p.get('montant');if(m){document.getElementById('prix').value=Number(m).toLocaleString('fr-FR');}
+if(d||m)calc();})();
 </script>
 <script>document.addEventListener('click',e=>{if(!e.target.closest('nav')&&!e.target.closest('.burger')){const n=document.getElementById('nav');if(n)n.classList.remove('open')}})</script>
 </body></html>
