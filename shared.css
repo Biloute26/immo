@@ -94,7 +94,7 @@ nav.main a:hover{color:var(--white);text-decoration:none}
 
 /* FOOTER */
 footer.site{background:var(--ink);color:#B8C5BD;padding:40px 0 28px;margin-top:40px}
-footer.site .cols{display:grid;grid-template-columns:2fr 1fr 1fr 1.2fr;gap:30px;margin-bottom:26px}
+footer.site .cols{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px;margin-bottom:26px}
 footer.site h4{color:var(--white);font-family:'Fraunces',serif;font-size:16px;margin-bottom:12px}
 footer.site a{color:#B8C5BD;display:block;font-size:14px;margin-bottom:7px}
 footer.site a:hover{color:var(--white)}
