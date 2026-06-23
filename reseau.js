@@ -1,6 +1,7 @@
 // Onglet flottant "Nos autres sites" — réseau de sites
 (function(){
   const SITES=[
+    {nom:'Wikinoo — astuces',url:'https://biloute26.github.io/wikinoo/',ic:'💡'},
     {nom:'Calculateurs immobiliers',url:'https://biloute26.github.io/immo/',ic:'🏠'},
     {nom:'Outils administratifs',url:'https://biloute26.github.io/outils-administratifs/',ic:'📋'},
     {nom:'Outils pratiques du quotidien',url:'https://biloute26.github.io/Outils-pratiques-du-Quotidien/',ic:'🧰'}
@@ -22,7 +23,7 @@
   #netTab a.nt-link .nt-ic{width:30px;height:30px;border-radius:7px;background:#F3EFE6;display:grid;place-items:center;font-size:16px;flex-shrink:0}
   #netTab a.nt-link.current{opacity:.5;pointer-events:none}
   #netTab a.nt-link.current:after{content:'(vous êtes ici)';font-size:11px;color:#6B6557;margin-left:auto}
-  @media(max-width:680px){#netTab{top:auto;bottom:90px}#netTab .nt-panel{width:240px}#netTab.open .nt-panel{left:42px}}
+  @media(max-width:680px){#netTab{top:auto;bottom:80px}#netTab .nt-panel{width:240px;top:auto;bottom:0;max-height:70vh;overflow-y:auto}#netTab.open .nt-panel{left:42px}}
   @media(prefers-reduced-motion:reduce){#netTab .nt-panel{transition:none}}
   `;
   const st=document.createElement('style');st.textContent=css;document.head.appendChild(st);
